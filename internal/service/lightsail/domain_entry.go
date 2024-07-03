@@ -359,6 +359,10 @@ func FindDomainEntryById(ctx context.Context, conn *lightsail.Client, id string)
 		entryName = expandDomainEntryName(name, domainName)
 		recordType = idParts[2]
 		recordTarget = idParts[3]
+		
+		if recordType == "CNAME" {
+			recordTarget = strings.TrimSuffix(recordTarget, ".")
+		}
 	}
 
 	in.DomainName = aws.String(domainName)
