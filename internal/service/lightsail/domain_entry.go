@@ -380,8 +380,8 @@ func FindDomainEntryById(ctx context.Context, conn *lightsail.Client, id string)
 	entryExists := false
 
 	for _, n := range out.Domain.DomainEntries {
-		nType = aws.ToString(n.Type)
-		nTarget = aws.ToString(n.Target)
+		nType := aws.ToString(n.Type)
+		nTarget := aws.ToString(n.Target)
 		if nType == "CNAME" && recordTarget != nTarget {
 			nTarget += "."
 		}
